@@ -124,7 +124,8 @@ LAND = {
 # (grid col, grid row, label) for the numbered story markers.
 MARKERS = [
     (81, 12, "1"),  # Shenzhen - APEC opens
-    (83, 13, "2"),  # Manila - QUAD
+    (83, 14, "2"),  # Manila - QUAD (row 14 = lat 14.5, was 13: sat on
+    # Shenzhen's circle; now clear of marker 1)
     (60, 7, "3"),   # Kerch - bridge aftermath
     (64, 11, "4"),  # Bahrain - Gulf drones
     (29, 8, "5"),   # New York - markets
@@ -239,6 +240,9 @@ def draw():
     for c, r, label in MARKERS:
         cx = int(mx + c * sx)
         cy = int(my + r * sy)
+        # cream halo first: punches a clear gap through the grey dots
+        # so the red disc and its white digit read at any size.
+        draw_circle(cx, cy, 12, PAPER)
         draw_circle(cx, cy, 10, RED)
         draw_text(cx, cy - 7, label, 2, PAPER, "center")
 
